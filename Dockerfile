@@ -1,5 +1,4 @@
-FROM node:12.18.0-stretch
-LABEL maintainer="Freeletics GmbH <operations@freeletics.com>"
+FROM node:14.14.0-stretch
 
 RUN wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - \
   && sh -c 'echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list' \
@@ -19,7 +18,7 @@ RUN  npm install && chown -R chrome:chrome /home/chrome/
 # Run Chrome non-privileged
 USER chrome
 
-EXPOSE 3000
+EXPOSE 8080
 
 CMD [ "node", "server.js" ]
 
